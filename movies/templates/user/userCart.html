@@ -1,0 +1,79 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block css %}
+    <style>
+        .mv_ticket {
+            margin: 0 auto;
+            position: fixed;
+            padding: 0;
+            width: 300px;
+            height: 400px;
+            left: 500px;
+            top: 100px;
+            z-index: 5;
+            background: #ffffff;
+            background-size: auto;
+            border-radius: 10px;
+            display: none;
+        }
+    </style>
+{% endblock %}
+{% block js %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="page-header"><h2>电影票</h2></div>
+        <table class="table table-bordered table-hover definewidth m10">
+            <thead>
+            <tr>
+                <th>电影id</th>
+                <th>电影标题</th>
+                <th>票数</th>
+                <th>总价</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            {% for row in shopMovies %}
+                <tr>
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.movieid.name }}</td>
+                    <td>{{ row.quantity }}</td>
+                    <td>{{ row.price }}</td>
+                    <td>
+                        <a id='look_ticket{{ row.id }}'>查看电影票</a> |
+                        <a href="{% url 'movies:deleteCart' row.id %}">删除记录</a>
+                    </td>
+                    <div class="mv_ticket" id="t{{ row.id }}" style="background: url({{ row.movieid.img }}) repeat-x;">
+                        <span class="glyphicon glyphicon-remove" id="cancel{{ row.id }}"
+                              style=" position: absolute;right: 10px;top: 10px;font-size: 25px;"></span>
+                        <div style="height: 30px;width: 200px;margin: 50px;"><span id="choose_seats"
+                                                                                   style="color: white;font-size: 20px;border: 1px solid red;">{{ row.movieid.name }}</span>
+                        </div>
+                        <br>
+                        <div style="height: 30px;width: 200px;margin-left: 50px;margin-top: 20px;"><span
+                                id="choose_seats" style="color: white;font-size: 20px;border: 1px solid red;">{{ row.seats }}</span></div>
+                        <br>
+                        <div style="height: 30px;width: 200px;margin-left: 50px;margin-top: 20px;"><span
+                                style="color: white;font-size: 20px;border: 1px solid red;">总价为:￥<span
+                                id="price">{{ row.price }}</span></span></div>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#look_ticket{{ row.id }}').click(function () {
+                                $('#t{{ row.id }}').css('display', 'block');
+                            });
+                            $('#cancel{{ row.id }}').click(function () {
+                                $('#t{{ row.id }}').css('display', 'none');
+                            })
+                        })
+                    </script>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
+
+
+

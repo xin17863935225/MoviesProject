@@ -1,0 +1,57 @@
+{% extends 'common/base.html' %}
+{% load  static %}
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+{% block js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'js/userVerify.js' %}"></script>
+{% endblock %}
+{% block header %}
+{% endblock %}
+
+{% block content %}
+    <div class="body">
+        <div class="container container-login">
+            <div class="signup-forms">
+                <div class="signup-box" style="display: block;">
+                    <form action="{% url 'movies:signup' %}" method="post" id="f1" onsubmit="return formsubmit()">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">用户名</label><span id="s1" style="margin-left: 40px;"></span>
+                            <input id="username" name="username" type="text" class="form-control"
+                                   placeholder="请输入用户名" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">密码</label><span id="s2" style="margin-left: 40px;"></span>
+                            <input id="password" name="pwd" type="password" class="form-control" placeholder="请输入密码" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">确认密码</label><span id="s3" style="margin-left: 40px;"></span>
+                            <input id="cpassword" name="password" type="password" class="form-control"
+                                   placeholder="请确认密码" required>
+                        </div>
+                        <button type="submit" class="btn btn-default">注册</button>
+                    </form>
+                    <div class="" style="width: 200px;position: absolute;top: 70px;right: 10px;">
+                        <a href="{% url 'movies:home' 1 %}"><img src="{% static 'img/logo.jpg' %}" style="width: 150px;"/></a>
+                    </div>
+                    <div class="bottom-link">
+                        已经注册?
+                        <a href="{% url 'movies:login' %}">马上登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fullscreen-bg" style="background-image: url('{{ rdimg }}');background-size: 100%;">
+        <img src="{{ rdimg }}"
+             style="width: 100%; height: 100%; margin-top: -7.5px;">
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

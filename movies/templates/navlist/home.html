@@ -1,0 +1,145 @@
+﻿{% extends 'common/base.html' %}
+{% load  static %}
+{% block css %}
+    {{ block.super }}
+    <style>
+        #myCarousel {
+            width: 1000px;
+            height: 450px;
+            margin: auto;
+        }
+
+        .item {
+            width: 1000px;
+            height:450px;
+        }
+
+        .item > img {
+{#            width: 100%;#}
+            width: 1000px;
+            height: 650px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <!-- Carousel
+================================================== -->
+    <div id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item  active">
+                <a href=""><img src="{% static 'img/carousel/3.jpg' %}" alt="First slide"></a>
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>名侦探柯南：零的执行人</h1>
+                        <p>名侦探柯南：零的执行人 | 东京湾边的新建筑“海洋边缘”将举办首脑云集的东京峰会。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="{% static 'img/carousel/5.jpg' %}" alt="Second slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>毒液：致命守护者</h1>
+                        <p>毒液：致命守护者 | 他将以毒攻毒，破解生命基金会的惊天阴谋，拯救世界。</p>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <img src="{% static 'img/carousel/6.jpg' %}" alt="Third slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>神奇动物：格林德沃之罪</h1>
+                        <p>神奇动物：格林德沃之罪 | 爱与忠诚备受考验，至亲好友也可能反目成仇……</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="{% static 'img/carousel/7.jpg' %}" alt="fourth slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>你好，之华</h1>
+                        <p>你好，之华 | 往日的记忆在苏醒，但再次相见，已物是人非。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="{% static 'img/carousel/8.jpg' %}" alt="fifth slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>昨日青空</h1>
+                        <p>昨日青空 | 描绘出一段极具中国风、清新唯美的青春故事。</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span
+                class="glyphicon glyphicon-chevron-left"></span></a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next"><span
+                class="glyphicon glyphicon-chevron-right"></span></a>
+    </div>
+    <!-- /.carousel -->
+{#    电影列表#}
+    <div style="width: 1000px;margin: 0 auto; margin-top: 30px;">
+        {% for movie in moviespage %}
+            <div class="media">
+                <div class="media-left">
+                    <a href="{% url 'movies:movie_details' movie.id %}" target="_blank">
+                        <img class="media-object" src="{{ movie.img }}" alt="..." style="width:200px;height: 250px;">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <a href="{% url 'movies:movie_details' movie.id %}" target="_blank">
+                        <br>
+                        <h3 class="media-heading">{{ movie.name }}</h3>
+                    </a>
+                    {{ movie.content|truncatewords:"30" }}
+                </div>
+            </div>
+        {% endfor %}
+        {# 分页#}
+        <nav aria-label="Page navigation">
+            <ul class="pagination" style="">
+                {% if currectpage.has_previous %}
+                    <li>
+                        <a href="{% url 'movies:home' currectpage.previous_page_number %}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled"><a href="#">&laquo;</a></li>
+                {% endif %}
+
+                {% for page in pagerange %}
+                    {% ifequal page currectnum %}
+                        <li class="active"><a href="{% url 'movies:home' page %}">{{ page }}</a></li>
+                    {% else %}
+                        <li><a href="{% url 'movies:home' page %}">{{ page }}</a></li>
+                    {% endifequal %}
+                {% endfor %}
+
+                {% if currectpage.has_next %}
+                    <li>
+                        <a href="{% url 'movies:home' currectpage.next_page_number %}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled"><a href="#">&raquo;</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+
+    </div>
+{% endblock %}

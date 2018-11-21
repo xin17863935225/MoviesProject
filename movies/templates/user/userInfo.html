@@ -1,0 +1,31 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block css %}
+    <style>
+        .container p{
+            font-size: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="page-header"><h2>个人信息</h2></div>
+        <img src="/static/upload/{{ user1.icon }}" alt="" style="width: 100px;height:100px;border-radius: 50px;">
+        <p>用户名: {{ user1.username }}</p>
+        {% if user1.email %}
+            <p>邮箱: {{ user1.email }}</p>
+        {% else %}
+            <p>邮箱: </p>
+        {% endif %}
+
+        {% ifequal user1.sex 1 %}
+            <p>性别: 男</p>
+        {% else %}
+            <p>性别: 女</p>
+        {% endifequal %}
+        <p>年龄: {{ user1.age }}</p>
+
+    </div>
+{% endblock %}

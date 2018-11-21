@@ -1,0 +1,324 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block css %}
+    {{ block.super }}
+    <style>
+        .btn1 {
+            margin-top: 10px;
+            width: 250px;
+            height: 40px;
+            font-size: 16px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 2px;
+            padding: 0;
+            color: #fff;
+            background-color: #df2d2d;
+            border: 0;
+
+        }
+
+        .row {
+            margin-left: 0;
+            margin-right: 0;
+
+        }
+
+        .buy-seats {
+            margin: 0 auto;
+            position: fixed;
+            padding: 0;
+            left: 300px;
+            top: 100px;
+            z-index: 5;
+            background: #ffffff;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .selectable {
+            display: inline-block;
+            font-size: 0;
+            width: 30px;
+            height: 26px;
+            margin: 0 5px;
+            background: url({% static 'img/seat/227714.png' %}) no-repeat;
+            background-size: 30px;
+            background-position: 0 1px;
+        }
+    </style>
+{% endblock %}
+{% block js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'js/buy.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    {#    电影详细信息#}
+    <div style="width: 1000px;margin: 0 auto; margin-top: 30px;">
+        <h1>{{ movie.name }}</h1>
+        <button class='btn1' userid='{{ user1.id }}' id="buybtn" >特惠购票</button>
+        <br><br>
+        <img src="{{ movie.img }}" alt="">
+        <br>
+        <p>{{ content|safe }}</p>
+        <br>
+        <a href="{{ movie.downloadlink }}" style="color: blue;font-size: 25px;">磁力下载链接，请点击下载</a>
+    </div>
+    <div class="buy-seats">
+        <span class="glyphicon glyphicon-remove" id="cancel" style=" position: absolute;right: 10px;top: 10px;font-size: 25px;"></span>
+        <h2 align="center">选取座位</h2>
+        <div class="seats-wrapper1">
+            <div class="row">
+            <span class="seat selectable" data-column-id="10" data-row-id="1" data-no="3301819103#01#10" data-st="N"
+                  data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="9" data-row-id="1" data-no="3301819103#01#09" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="8" data-row-id="1" data-no="3301819103#01#08" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="7" data-row-id="1" data-no="3301819103#01#07" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="6" data-row-id="1" data-no="3301819103#01#06" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="5" data-row-id="1" data-no="3301819103#01#05" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="4" data-row-id="1" data-no="3301819103#01#04" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="3" data-row-id="1" data-no="3301819103#01#03" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="2" data-row-id="1" data-no="3301819103#01#02" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="1" data-row-id="1" data-no="3301819103#01#01" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat empty" data-column-id="" data-row-id="1" data-no="" data-st="E" data-act="seat-click"
+                      data-bid="b_s7eiiijf"></span>
+                <span class="seat empty" data-column-id="" data-row-id="1" data-no="" data-st="E" data-act="seat-click"
+                      data-bid="b_s7eiiijf"></span>
+            </div>
+            <div class="row">
+            <span class="seat selectable" data-column-id="12" data-row-id="2" data-no="3301819103#02#12" data-st="N"
+                  data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="11" data-row-id="2" data-no="3301819103#02#11" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="10" data-row-id="2" data-no="3301819103#02#10" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="9" data-row-id="2" data-no="3301819103#02#09" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="8" data-row-id="2" data-no="3301819103#02#08" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="7" data-row-id="2" data-no="3301819103#02#07" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="6" data-row-id="2" data-no="3301819103#02#06" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="5" data-row-id="2" data-no="3301819103#02#05" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="4" data-row-id="2" data-no="3301819103#02#04" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="3" data-row-id="2" data-no="3301819103#02#03" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="2" data-row-id="2" data-no="3301819103#02#02" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="1" data-row-id="2" data-no="3301819103#02#01" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+            </div>
+            <div class="row">
+            <span class="seat selectable" data-column-id="12" data-row-id="3" data-no="3301819103#03#12" data-st="N"
+                  data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="11" data-row-id="3" data-no="3301819103#03#11" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="10" data-row-id="3" data-no="3301819103#03#10" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="9" data-row-id="3" data-no="3301819103#03#09" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="8" data-row-id="3" data-no="3301819103#03#08" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="7" data-row-id="3" data-no="3301819103#03#07" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="6" data-row-id="3" data-no="3301819103#03#06" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="5" data-row-id="3" data-no="3301819103#03#05" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="4" data-row-id="3" data-no="3301819103#03#04" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="3" data-row-id="3" data-no="3301819103#03#03" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="2" data-row-id="3" data-no="3301819103#03#02" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="1" data-row-id="3" data-no="3301819103#03#01" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+            </div>
+            <div class="row">
+            <span class="seat selectable" data-column-id="12" data-row-id="4" data-no="3301819103#04#12" data-st="N"
+                  data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="11" data-row-id="4" data-no="3301819103#04#11" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="10" data-row-id="4" data-no="3301819103#04#10" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="9" data-row-id="4" data-no="3301819103#04#09" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="8" data-row-id="4" data-no="3301819103#04#08" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="7" data-row-id="4" data-no="3301819103#04#07" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="6" data-row-id="4" data-no="3301819103#04#06" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="5" data-row-id="4" data-no="3301819103#04#05" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="4" data-row-id="4" data-no="3301819103#04#04" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="3" data-row-id="4" data-no="3301819103#04#03" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="2" data-row-id="4" data-no="3301819103#04#02" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="1" data-row-id="4" data-no="3301819103#04#01" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+            </div>
+            <div class="row">
+            <span class="seat selectable" data-column-id="12" data-row-id="5" data-no="3301819103#05#12" data-st="N"
+                  data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="11" data-row-id="5" data-no="3301819103#05#11" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="10" data-row-id="5" data-no="3301819103#05#10" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="9" data-row-id="5" data-no="3301819103#05#09" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="8" data-row-id="5" data-no="3301819103#05#08" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="7" data-row-id="5" data-no="3301819103#05#07" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="6" data-row-id="5" data-no="3301819103#05#06" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="5" data-row-id="5" data-no="3301819103#05#05" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="4" data-row-id="5" data-no="3301819103#05#04" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="3" data-row-id="5" data-no="3301819103#05#03" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="2" data-row-id="5" data-no="3301819103#05#02" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="1" data-row-id="5" data-no="3301819103#05#01" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+            </div>
+            <div class="row">
+            <span class="seat selectable" data-column-id="10" data-row-id="6" data-no="3301819103#06#10" data-st="N"
+                  data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="9" data-row-id="6" data-no="3301819103#06#09" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="8" data-row-id="6" data-no="3301819103#06#08" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="7" data-row-id="6" data-no="3301819103#06#07" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="6" data-row-id="6" data-no="3301819103#06#06" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="5" data-row-id="6" data-no="3301819103#06#05" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="4" data-row-id="6" data-no="3301819103#06#04" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="3" data-row-id="6" data-no="3301819103#06#03" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="2" data-row-id="6" data-no="3301819103#06#02" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="1" data-row-id="6" data-no="3301819103#06#01" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat empty" data-column-id="" data-row-id="6" data-no="" data-st="E" data-act="seat-click"
+                      data-bid="b_s7eiiijf"></span>
+                <span class="seat empty" data-column-id="" data-row-id="6" data-no="" data-st="E" data-act="seat-click"
+                      data-bid="b_s7eiiijf"></span>
+            </div>
+            <div class="row">
+            <span class="seat selectable" data-column-id="11" data-row-id="7" data-no="3301819103#07#11" data-st="N"
+                  data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="10" data-row-id="7" data-no="3301819103#07#10" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="9" data-row-id="7" data-no="3301819103#07#09" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="8" data-row-id="7" data-no="3301819103#07#08" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="7" data-row-id="7" data-no="3301819103#07#07" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="6" data-row-id="7" data-no="3301819103#07#06" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="5" data-row-id="7" data-no="3301819103#07#05" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="4" data-row-id="7" data-no="3301819103#07#04" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="3" data-row-id="7" data-no="3301819103#07#03" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="2" data-row-id="7" data-no="3301819103#07#02" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="1" data-row-id="7" data-no="3301819103#07#01" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat empty" data-column-id="" data-row-id="7" data-no="" data-st="E" data-act="seat-click"
+                      data-bid="b_s7eiiijf"></span>
+            </div>
+            <div class="row">
+            <span class="seat selectable" data-column-id="11" data-row-id="8" data-no="3301819103#08#11" data-st="N"
+                  data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="10" data-row-id="8" data-no="3301819103#08#10" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="9" data-row-id="8" data-no="3301819103#08#09" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="8" data-row-id="8" data-no="3301819103#08#08" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="7" data-row-id="8" data-no="3301819103#08#07" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="6" data-row-id="8" data-no="3301819103#08#06" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="5" data-row-id="8" data-no="3301819103#08#05" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="4" data-row-id="8" data-no="3301819103#08#04" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="3" data-row-id="8" data-no="3301819103#08#03" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="2" data-row-id="8" data-no="3301819103#08#02" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="1" data-row-id="8" data-no="3301819103#08#01" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat empty" data-column-id="" data-row-id="8" data-no="" data-st="E" data-act="seat-click"
+                      data-bid="b_s7eiiijf"></span>
+            </div>
+            <div class="row">
+            <span class="seat selectable" data-column-id="11" data-row-id="9" data-no="3301819103#09#11" data-st="N"
+                  data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="10" data-row-id="9" data-no="3301819103#09#10" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="9" data-row-id="9" data-no="3301819103#09#09" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="8" data-row-id="9" data-no="3301819103#09#08" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="7" data-row-id="9" data-no="3301819103#09#07" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="6" data-row-id="9" data-no="3301819103#09#06" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="5" data-row-id="9" data-no="3301819103#09#05" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="4" data-row-id="9" data-no="3301819103#09#04" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="3" data-row-id="9" data-no="3301819103#09#03" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="2" data-row-id="9" data-no="3301819103#09#02" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat selectable" data-column-id="1" data-row-id="9" data-no="3301819103#09#01" data-st="N"
+                      data-act="seat-click" data-bid="b_s7eiiijf"></span>
+                <span class="seat empty" data-column-id="" data-row-id="9" data-no="" data-st="E" data-act="seat-click"
+                      data-bid="b_s7eiiijf"></span>
+            </div>
+        </div>
+        <div style="height: 30px;width: 100%;margin: 10px;"><span id="choose_seats" style="color: red;font-size: 20px;"></span></div>
+        <div style="height: 30px;width: 100%;margin: 10px;"><span style="color: red;font-size: 20px;">总价为:￥<span id="price">0</span></span></div>
+        <button userid='{{ user1.id }}' movieid='{{ movie.id }}' id="paybtn" class="btn1" style="margin-left:140px;">付款</button>
+        <img src="{% static 'img/seat/QRcode.png' %}" alt="" id="QRcode"
+             style="position: absolute;top:36%;left:37%;margin: 0 auto;display: none;">
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

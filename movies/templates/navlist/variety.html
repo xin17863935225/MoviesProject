@@ -1,0 +1,60 @@
+{% extends 'common/base.html' %}
+{% load  static %}
+{% block css %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+{#    电影列表#}
+    <div style="width: 1000px;margin: 0 auto; margin-top: 30px;">
+        {% for movie in moviespage %}
+            <div class="media">
+                <div class="media-left">
+                    <a href="{% url 'movies:movie_details' movie.id %}" target="_blank">
+                        <img class="media-object" src="{{ movie.img }}" alt="..." style="width:200px;height: 250px;">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <a href="{% url 'movies:movie_details' movie.id %}" target="_blank">
+                        <br>
+                        <h3 class="media-heading">{{ movie.name }}</h3>
+                    </a>
+                    {{ movie.content|truncatewords:"30" }}
+                </div>
+            </div>
+        {% endfor %}
+        {# 分页#}
+        <nav aria-label="Page navigation">
+            <ul class="pagination" style="">
+                {% if currectpage.has_previous %}
+                    <li>
+                        <a href="{% url 'movies:variety' currectpage.previous_page_number %}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled"><a href="#">&laquo;</a></li>
+                {% endif %}
+
+                {% for page in pagerange %}
+                    {% ifequal page currectnum %}
+                        <li class="active"><a href="{% url 'movies:variety' page %}">{{ page }}</a></li>
+                    {% else %}
+                        <li><a href="{% url 'movies:variety' page %}">{{ page }}</a></li>
+                    {% endifequal %}
+                {% endfor %}
+
+                {% if currectpage.has_next %}
+                    <li>
+                        <a href="{% url 'movies:variety' currectpage.next_page_number %}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="disabled"><a href="#">&raquo;</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+
+    </div>
+{% endblock %}
